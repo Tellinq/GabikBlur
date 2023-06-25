@@ -1,8 +1,8 @@
 {
   "compatibilityLevel": "JAVA_8",
   "minVersion": "0.7",
-  "package": "cc.polyfrost.example.mixin",
-  "refmap": "mixins.examplemod.refmap.json",
+  "package": "me.tellinq.gabikblur.mixin",
+  "refmap": "mixins.gabikblur.refmap.json",
   "injectors": {
     "maxShiftBy": 5
   },
