@@ -1,13 +1,9 @@
 package me.tellinq.gabikblur;
 
-import cc.polyfrost.oneconfig.events.EventManager;
-import cc.polyfrost.oneconfig.events.event.TickEvent;
-import cc.polyfrost.oneconfig.libs.eventbus.Subscribe;
 import cc.polyfrost.oneconfig.libs.universal.UMinecraft;
 import net.minecraft.client.Minecraft;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
-import org.lwjgl.opengl.Display;
 
 @Mod(modid = GabikBlur.MODID, name = GabikBlur.NAME, version = GabikBlur.VERSION)
 public class GabikBlur {
