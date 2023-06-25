@@ -21,15 +21,10 @@ public class GabikBlur {
 
     private long lastTimestampInGame;
 
-    private int prevFpslimit;
-    private boolean wasInactive;
-
-    // Register the config and commands.
     @Mod.EventHandler
     public void onInit(FMLInitializationEvent event) {
         INSTANCE = this;
         config = new GabikBlurConfig();
-        EventManager.INSTANCE.register(this);
     }
 
     public float getMultiplier() {
@@ -53,27 +48,5 @@ public class GabikBlur {
 
         long fadeOut = System.currentTimeMillis() - this.lastTimestampInGame;
         return fadeOut > 10000L ? 0 : Math.max(percent / 1000.0F, 0);
-    }
-
-    @Subscribe
-    public void onTick(TickEvent e) {
-        if (Minecraft.getMinecraft().theWorld == null) {
-            if (wasInactive) {
-                Minecraft.getMinecraft().gameSettings.limitFramerate = prevFpslimit;
-                wasInactive = false;
-            }
-            return;
-        }
-
-        boolean active = Display.isActive();
-
-        if (!active && Minecraft.getMinecraft().gameSettings.limitFramerate != 30) {
-            prevFpslimit = Minecraft.getMinecraft().gameSettings.limitFramerate;
-            Minecraft.getMinecraft().gameSettings.limitFramerate = 30;
-            wasInactive = true;
-        } else if (active && wasInactive) {
-            Minecraft.getMinecraft().gameSettings.limitFramerate = prevFpslimit;
-            wasInactive = false;
-        }
     }
 }
