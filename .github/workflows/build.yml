@@ -28,6 +28,7 @@ jobs:
         with:
           java-version: 17
           distribution: temurin
+          cache: 'gradle'
 
       - uses: actions/cache@v2
         with:
@@ -39,9 +40,14 @@ jobs:
           key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
           restore-keys: |
             ${{ runner.os }}-gradle-
-
       - name: Chmod Gradle
         run: chmod +x ./gradlew
 
       - name: Build
         run: ./gradlew build --no-daemon
+
+      - name: Upload Build Artifacts
+        uses: actions/upload-artifact@v2
+        with:
+          name: artifacts
+          path: versions/**/build/libs/
