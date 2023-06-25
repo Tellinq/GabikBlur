@@ -33,7 +33,9 @@ public class GabikBlur {
     }
 
     public float getMultiplier() {
-        return Minecraft.getDebugFPS() > 120 ? Minecraft.getDebugFPS() > 200 ? GabikBlurConfig.multiplier : 0.5F * GabikBlurConfig.multiplier : 0;
+        float multiplier = GabikBlurConfig.multiplier;
+        int fps = Minecraft.getDebugFPS();
+        return fps > 200 ? multiplier : fps > 120 ? 0.5F * multiplier : 0;
     }
 
     public float getAccumulationValue() {
