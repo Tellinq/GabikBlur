@@ -2,6 +2,7 @@ package me.tellinq.gabikblur;
 
 import cc.polyfrost.oneconfig.config.Config;
 import cc.polyfrost.oneconfig.config.annotations.Slider;
+import cc.polyfrost.oneconfig.config.annotations.Switch;
 import cc.polyfrost.oneconfig.config.data.Mod;
 import cc.polyfrost.oneconfig.config.data.ModType;
 
@@ -18,6 +19,11 @@ public class GabikBlurConfig extends Config {
             step = 1
     )
     public static int multiplier = 55;
+
+    @Switch(
+            name = "Apply In Menus"
+    )
+    public static boolean applyInMenus = true;
 
 
     public GabikBlurConfig() {

@@ -1,6 +1,8 @@
 package me.tellinq.gabikblur.mixin;
 
+import cc.polyfrost.oneconfig.libs.universal.UMinecraft;
 import me.tellinq.gabikblur.GabikBlur;
+import me.tellinq.gabikblur.GabikBlurConfig;
 import net.minecraft.client.Minecraft;
 import org.lwjgl.opengl.Display;
 import org.lwjgl.opengl.GL11;
@@ -15,6 +17,10 @@ public class MinecraftMixin {
     @Inject(method = "runGameLoop", at = @At(value = "INVOKE", target = "Lnet/minecraft/profiler/Profiler;startSection(Ljava/lang/String;)V", ordinal = 5))
     private void setupBlur(CallbackInfo ci) {
         if (GabikBlur.config.enabled) {
+            if (!GabikBlurConfig.applyInMenus && UMinecraft.getMinecraft().currentScreen != null) {
+                return;
+            }
+
             float value = GabikBlur.INSTANCE.getAccumulationValue();
             GL11.glAccum(GL11.GL_MULT, value);
             GL11.glAccum(GL11.GL_ACCUM, 1F - value);
